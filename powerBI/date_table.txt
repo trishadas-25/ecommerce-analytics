@@ -1,0 +1,17 @@
+DatesTable =
+VAR StartDate = DATE(2016, 9, 1)
+VAR EndDate = DATE(2018, 9, 1)
+RETURN
+SELECTCOLUMNS(
+    FILTER(
+        CALENDAR(StartDate, EndDate),
+        DAY([Date]) = 1
+    ),
+    "Date", [Date],
+    "Year", YEAR([Date]),
+    "Month Number", MONTH([Date]),
+    "Month", FORMAT([Date], "MMMM"),
+    "Month Short", FORMAT([Date], "MMM"),
+    "Year-Month", FORMAT([Date], "YYYY-MM"),
+    "Quarter", "Q" & FORMAT([Date], "Q")
+)

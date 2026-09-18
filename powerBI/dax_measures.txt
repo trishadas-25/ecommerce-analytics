@@ -1,0 +1,28 @@
+Total Revenue =
+SUM ( 'public vw_monthly_sales'[total_revenue] )
+
+Total Orders =
+SUM ( 'public vw_monthly_sales'[total_orders] )
+
+Total Items =
+SUM ( 'public vw_monthly_sales'[total_items] )
+
+Average Order Value =
+DIVIDE ( [Total Revenue], [Total Orders], 0 )
+
+Average Item Value =
+DIVIDE ( [Total Revenue], [Total Items], 0 )
+
+Category Revenue =
+SUM ( 'public vw_category_performance'[total_revenue] )
+
+Average Review Score =
+DIVIDE(
+    SUMX(
+        'public vw_review_performance',
+        'public vw_review_performance'[review_score]
+            * 'public vw_review_performance'[review_count]
+    ),
+    SUM('public vw_review_performance'[review_count]),
+    0
+)
